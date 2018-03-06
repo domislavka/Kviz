@@ -3,7 +3,8 @@ int oblost = 30;
 float sirina_odg;
 
 String gameName = "KVIZ";
-String welcomeMessage = "Dobrodošli!\nUnesite svoje ime:\n";
+String welcomeMessage = "Unesite svoje ime:\n";
+String serverAddressMessage = "Unesite IP adresu servera:\n";
 String closeText = "Zatvori";
 String startText = "Počni!";
 String highScoreText = "Highscore";
@@ -15,11 +16,14 @@ String loginSuccessText = "Uspješno ste prijavljeni na igru. Molimo pričekajte
 void startScreen(){
   background(255);
   fill(0);
-  textAlign(CENTER, TOP);
+  textAlign(CENTER, CENTER);
   textSize(70);
-  text("NAZIV IGRE\n", width/2, height/4);
-  textSize(30);
-  text("Unesite ime:\n", width/2, height/4 + 110);
+  text("NAZIV IGRE", width/2, height/6);
+  textSize(40);
+  text("Dobrodošli!", width/2, height/6 + 90);
+  textSize(txtMyName.getHeight()/2);
+  text(welcomeMessage, width/2, height/2 - txtMyName.getHeight()*1.5);
+  //text("Unesite IP adresu servera:\n", width/2, height/2 + txtMyName.getHeight()*1.25);
   textAlign(CENTER, CENTER);
   
   buttonHighScore(colors[0]);
@@ -197,5 +201,5 @@ void loginSuccessful(){
   stroke(0);
   textAlign(CENTER);
   textSize(20);
-  text(loginSuccessText, width/2, 3*height/5);
+  text(loginSuccessText, width/2, 7*height/12 + razmak/2 + 15 + txtMyName.getHeight()*1.25);
 }

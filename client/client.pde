@@ -13,8 +13,10 @@ Movie[] videos;
 Minim[] audios;
 AudioPlayer[] player;
 
-ControlP5 cp5;
+ControlP5 cp5, cp6, rBtn1;
 Textfield txtMyName;
+Textfield txtServerAddress;
+RadioButton radio1;
 PFont font;
 
 InetAddress inet;
@@ -38,6 +40,7 @@ boolean begin = false;
 boolean scoreSaved = false;
 boolean videoplay = false;
 int rand_slika=0;
+boolean multiplayer = false;
 
 pitanja Questions;
 
@@ -54,7 +57,7 @@ void setup() {
   font = createFont("Lucida Sans", 30);
   cp5 = new ControlP5(this);
   txtMyName = cp5.addTextfield("")
-    .setPosition(width/2 - 100, height/2)
+    .setPosition(width/2 - 100, height/3 + 100)
     .setSize(200, 30)
     .setColor(0)
     .setColorBackground(-1)
@@ -63,23 +66,39 @@ void setup() {
     .setAutoClear(false)
     .setFocus(true);
 
+  cp6 = new ControlP5(this);
+  txtServerAddress = cp6.addTextfield("")
+    .setPosition(width/2 - 100, height/3 + 125 + txtMyName.getHeight()*2)
+    .setSize(200, 30)
+    .setColor(0)
+    .setColorBackground(-1)
+    .setColorCursor(0)
+    .setFont(font)
+    .setAutoClear(false);
+
+  rBtn1 = new ControlP5(this);
+  radio1 = rBtn1.addRadioButton("")
+                .setTitle("Odaberite")
+                .setItemsPerRow(1)
+                .setPosition(width/2 - 15, height/4 + 60)
+                .addItem("Single player", 1)
+                .addItem("Multiplayer", 2)
+                .setSize(30, 30);
+                
+  radio1.getItem(0).setState(true);
+  radio1.getItem("Single player")
+        .setCaptionLabel("Single player")
+        .setColorCaptionLabel(0);
+  radio1.getItem("Multiplayer")
+        .setCaptionLabel("Multiplayer")
+        .setColorCaptionLabel(0);
+       
   sirina_odg = 0.6*width - height/10;
   sirina_odg /= 2;
   razmak = height/60;
 
   serverAddress = "127.0.0.1";
   //serverAddress = "10.1.239.104";
-  
-  c = new Client(this, serverAddress, port);
-  try {
-    inet = InetAddress.getLocalHost();
-    ipAddr = inet.getHostAddress();
-    print("HOST: "); 
-    println(ipAddr);
-  } 
-  catch (Exception e) {
-    e.printStackTrace();
-  }
   
   videos = new Movie[Questions.tabs_q[4].getRowCount()];
   for(int i = 0;i < Questions.tabs_q[4].getRowCount();++i){
@@ -95,16 +114,49 @@ void setup() {
   
 }
 
+void controlEvent(ControlEvent theEvent){
+  if(theEvent.isFrom(radio1)){
+    if(radio1.getItem(0).getState() == true){
+      radio1.deactivate(1);
+    }
+    else{
+      radio1.activate(1);
+    }
+  }
+}
+
 void draw() {
   
-  if (state > 0)
+  if (state > 0){
     txtMyName.hide();
-  else
+    txtServerAddress.hide();
+    radio1.hide();
+  }
+  else{
     txtMyName.show();
+    txtServerAddress.show();
+  }
   switch(state) {
     case 0:
       startScreen();
       mouseOver();
+      if(radio1.getItem(0).getState() == true){
+        multiplayer = false;
+        textAlign(CENTER, CENTER);
+        fill(255);
+        stroke(255);
+        rect(width/2, height/2 + txtMyName.getHeight()*1.25, width, txtMyName.getHeight()/2);
+        txtServerAddress.hide();
+      }
+      else if(radio1.getItem(1).getState() == true){
+        multiplayer = true;
+        textAlign(CENTER, CENTER);
+        fill(0);
+        textSize(txtMyName.getHeight()/2);
+        text("Unesite IP adresu servera:\n", width/2, height/2 + txtMyName.getHeight()*1.25);
+        txtServerAddress.show();
+      }
+      
       break;
     case 1:
       if (begin == false) {

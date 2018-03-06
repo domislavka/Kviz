@@ -60,10 +60,14 @@ void keyPressed(){
   
   else{
     if(keyCode == ENTER || keyCode == RETURN){
-      if(state == 0 && txtMyName.getText().length() > 0) {
-        state = 1;
+      if(state == 0 && txtMyName.getText().length() > 0 && txtServerAddress.getText().length() > 0) {
         myName = txtMyName.getText();
+        serverAddress = txtServerAddress.getText();
+        print("serverAddress: " + serverAddress + "\n");
+        spajanjeNaServer();
+        //treba provjeriti da je unesena dobra ip adressa
         keyPressed = false;
+        state = 1;
         return;
       }
     }

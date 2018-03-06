@@ -60,8 +60,12 @@ void mousePressed(){
   else if((mouseX >= 2*width/5 && mouseX <= 2*width/5 + width/5) &&
       (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
       //pritisnuli smo buttonStart
-      if(state == 0 && txtMyName.getText().length() > 0){
+      if(state == 0 && txtMyName.getText().length() > 0 && txtServerAddress.getText().length() > 0){
         myName = txtMyName.getText();
+        serverAddress = txtServerAddress.getText();
+        print("serverAddress: " + serverAddress + "\n");
+        spajanjeNaServer();
+        //treba provjeriti da je unesena dobra ip adressa
         state = 1;
       }
       //pritisnuli smo buttonReplay, myName ostavljamo isto
