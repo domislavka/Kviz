@@ -3,7 +3,8 @@ int oblost = 30;
 float sirina_odg;
 
 String gameName = "KVIZ";
-String welcomeMessage = "Unesite svoje ime:\n";
+String welcomeMessage = "Dobrodošli!";
+String nameMessage = "Unesite svoje ime:\n";
 String serverAddressMessage = "Unesite IP adresu servera:\n";
 String closeText = "Zatvori";
 String startText = "Počni!";
@@ -18,12 +19,12 @@ void startScreen(){
   fill(0);
   textAlign(CENTER, CENTER);
   textSize(70);
-  text("NAZIV IGRE", width/2, height/6);
+  text(gameName, width/2, height/10);
   textSize(40);
-  text("Dobrodošli!", width/2, height/6 + 90);
+  text(welcomeMessage, width/2, height/10 + 100);
   textSize(txtMyName.getHeight()/2);
-  text(welcomeMessage, width/2, height/2 - txtMyName.getHeight()*1.5);
-  //text("Unesite IP adresu servera:\n", width/2, height/2 + txtMyName.getHeight()*1.25);
+  fill(0);
+  text(nameMessage, width/2, height/3);
   textAlign(CENTER, CENTER);
   
   buttonHighScore(colors[0]);
@@ -71,7 +72,8 @@ void crtaj_pitanje(String q, String a1, String a2, String a3, String a4) {
     image(nota, height/10 + 10, height/10 + 10);
   }
     
-  text(tekst, height/10 + width*0.3, height/10 + 17*height/60);
+  if(currCategory == 4 || currCategory == 3) text(tekst, height/10 + width*0.3, height/10 + height/60);
+  else text(tekst, height/10 + width*0.3, height/10 + 17*height/60);
   text(answers.get(0), height/10 + sirina_odg/2, 2*height/3 + razmak + height/20);
   text(answers.get(1), height/5 + sirina_odg*1.5, 2*height/3 + razmak + height/20);
   text(answers.get(2), height/10 + sirina_odg/2, 2*height/3 + 2*razmak + height/20 + height/10);

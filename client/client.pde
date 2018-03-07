@@ -20,7 +20,7 @@ RadioButton radio1;
 PFont font;
 
 InetAddress inet;
-String ipAddr, myID = "3", myName = ""; // Ovo promijeniti kod svakog klijenta!!!
+String ipAddr, myID = "31", myName = ""; // Ovo promijeniti kod svakog klijenta!!!
 String serverAddress;
 int port = 12345;
 
@@ -57,7 +57,7 @@ void setup() {
   font = createFont("Lucida Sans", 30);
   cp5 = new ControlP5(this);
   txtMyName = cp5.addTextfield("")
-    .setPosition(width/2 - 100, height/3 + 100)
+    .setPosition(width/2 - 100, height/3 + 50)
     .setSize(200, 30)
     .setColor(0)
     .setColorBackground(-1)
@@ -68,7 +68,7 @@ void setup() {
 
   cp6 = new ControlP5(this);
   txtServerAddress = cp6.addTextfield("")
-    .setPosition(width/2 - 100, height/3 + 125 + txtMyName.getHeight()*2)
+    .setPosition(width/2 - 100, height/2)
     .setSize(200, 30)
     .setColor(0)
     .setColorBackground(-1)
@@ -80,7 +80,7 @@ void setup() {
   radio1 = rBtn1.addRadioButton("")
                 .setTitle("Odaberite")
                 .setItemsPerRow(1)
-                .setPosition(width/2 - 15, height/4 + 60)
+                .setPosition(width/2 - 15, 4*height/17)
                 .addItem("Single player", 1)
                 .addItem("Multiplayer", 2)
                 .setSize(30, 30);
@@ -135,6 +135,7 @@ void draw() {
   else{
     txtMyName.show();
     txtServerAddress.show();
+    radio1.show();
   }
   switch(state) {
     case 0:
@@ -145,7 +146,7 @@ void draw() {
         textAlign(CENTER, CENTER);
         fill(255);
         stroke(255);
-        rect(width/2, height/2 + txtMyName.getHeight()*1.25, width, txtMyName.getHeight()/2);
+        rect(width/2, height/2 - txtMyName.getHeight()*1.5, width, txtMyName.getHeight()/2);
         txtServerAddress.hide();
       }
       else if(radio1.getItem(1).getState() == true){
@@ -153,7 +154,7 @@ void draw() {
         textAlign(CENTER, CENTER);
         fill(0);
         textSize(txtMyName.getHeight()/2);
-        text("Unesite IP adresu servera:\n", width/2, height/2 + txtMyName.getHeight()*1.25);
+        text("Unesite IP adresu servera:\n", width/2, height/2 - txtMyName.getHeight()*1.5);
         txtServerAddress.show();
       }
       
@@ -195,8 +196,8 @@ void draw() {
         videos[currNumber].play();
         videoplay = false;
       }
-      imageMode(CORNER);
-      image(videos[currNumber], height/10 + 15, height/10 + 15, 0.6*width - 15, 17*height/30 - 15);
+      imageMode(CENTER);
+      image(videos[currNumber], height/10 + width * 0.3, height/10 + 17*height/60, height*0.8, height*0.5 - 5);
       tim.timer_draw();
       if(stoperica.second() == 10){
         state = 1;
