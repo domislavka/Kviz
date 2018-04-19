@@ -35,3 +35,6 @@ Video	</br>
 	- Klikom miša na Zatvori client.pde se zatvara.</br>
 	- Klikom miša na Nazad vraćamo se na početni zaslon i kao prije se prijavljujemo za igru.</br>
 	- Klikom miša na Ponovno igraj, s istim imenom kao i prije se ponovno prijavljujemo za igru. Opet na serveru trebamo pritisnuti gumb Pokreni da igru započnemo.</br>
+	
+	
+Ovdje u repozitoriju nema audio i video pitanja zbog (C). (link uskoro)
