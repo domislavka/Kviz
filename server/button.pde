@@ -25,7 +25,9 @@ void buttonClose(){
 void mouseClicked(){
   if((mouseX >= 2*width/5 && mouseX <= 2*width/5 + width/5) &&
           (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
-      begin = true;
+      for(Client c : allClients)
+        c.write("MyID" + "#" + myID + "#" + "Countdown" + "\n");
+      countdown = true;
   }
   
   else if((mouseX >= 7*width/10 && mouseX <= 7*width/10 + width/5) &&

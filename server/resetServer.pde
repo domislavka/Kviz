@@ -19,6 +19,8 @@ void resetServer(){
   prevCategory = "-1";
   prevNumber = "-1";
   
+  q = "";
+  
   startScreen();
   buttonStart();
   buttonClose();

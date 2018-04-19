@@ -1,4 +1,6 @@
-class Player{
+import java.util.Collections;
+
+class Player implements Comparable<Player>{
   String id;
   String name;
   int score;
@@ -18,7 +20,6 @@ class Player{
     this.name = name;
     this.id = id;
     this.ip = ip;
-    
     this.score = 0;
     this.answer = "";
   }
@@ -32,6 +33,10 @@ class Player{
   
   void show(){
     print(id + " " + name + " " + score + "\n");
+  }
+  
+  int compareTo(Player p){
+    return this.score - p.score;
   }
   
 }

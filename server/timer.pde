@@ -24,17 +24,17 @@ class timer{
     fill(255);
     stroke(255);
     //ne znam zasto podivlja za i = 100
-    if(stoperica.second() != 10) rect(timer_x, timer_y, timer_w, timer_h, 30);
+    if(stoperica.second() != vrijemeZaOdgovor) rect(timer_x, timer_y, timer_w, timer_h, 30);
     rectMode(RADIUS);
-    if(stoperica.second() < 10){
-      fill(colors[9 - stoperica.second()]);
-      stroke(colors[9 - stoperica.second()]);
+    if(stoperica.second() < vrijemeZaOdgovor){
+      fill(colors[vrijemeZaOdgovor -1 - stoperica.second()]);
+      stroke(colors[vrijemeZaOdgovor - 1 - stoperica.second()]);
     }
-    rect(timer_x+timer_w/2,timer_y+timer_h/2,(10 - stoperica.second())*timer_w/20,timer_h/2,30);
+    rect(timer_x+timer_w/2,timer_y+timer_h/2,(vrijemeZaOdgovor - stoperica.second())*timer_w/20,timer_h/2,30);
     rectMode(CORNER);
     fill(0);
     textAlign(CENTER,CENTER);
     textSize(timer_h/2);
-    text(10 - stoperica.second(),timer_x+timer_w/2,timer_y+timer_h/2);
+    text(vrijemeZaOdgovor - stoperica.second(),timer_x+timer_w/2,timer_y+timer_h/2);
   }
 }

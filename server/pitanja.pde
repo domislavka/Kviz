@@ -7,20 +7,22 @@
   4 - video
 */
 
+int BROJKATEGORIJA = 4;
+
 class pitanja{
-  Table[] tabs_q = new Table[5];
-  IntList[] postavljena_pitanja = new IntList[5];
+  Table[] tabs_q = new Table[BROJKATEGORIJA];
+  IntList[] postavljena_pitanja = new IntList[BROJKATEGORIJA];
   IntList potrosene_kategorije = new IntList();
   pitanja(){
-    String[] folder = new String[5];
+    String[] folder = new String[BROJKATEGORIJA];
 
     folder[0] = "audio/";
     folder[1] = "bonus/";
     folder[2] = "pitanja/";
     folder[3] = "slike/";
-    folder[4] = "video/";
+    // folder[4] = "video/";
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < BROJKATEGORIJA; ++i) {
       tabs_q[i] = new Table();
       tabs_q[i] = loadTable(dataPath(folder[i] + "pitanja.tsv"), "tsv");
       postavljena_pitanja[i] = new IntList();
@@ -32,7 +34,7 @@ class pitanja{
     Table svaPitanja = null;
     print("kategorija na pocetku " + kategorija + "\n");
     //PROVJERIMO IZ KOJIH KATEOGORIJA SMO POTROSILI PITANJA
-    for(int i = 0; i < 5; ++i){
+    for(int i = 0; i < BROJKATEGORIJA; ++i){
       if(postavljena_pitanja[i].size() == tabs_q[i].getRowCount())
         if(potrosene_kategorije.hasValue(i) == false)
           potrosene_kategorije.push(i);
@@ -40,10 +42,9 @@ class pitanja{
     
     if(potrosene_kategorije.hasValue(kategorija)){
        int rnd_kategorija;
-              do{
-         rnd_kategorija = (int) random(0, 5);
-       }
-       while(potrosene_kategorije.hasValue(rnd_kategorija));
+       do{
+         rnd_kategorija = (int) random(0, BROJKATEGORIJA);
+       }while(potrosene_kategorije.hasValue(rnd_kategorija));
        
        kategorija = rnd_kategorija;
        svaPitanja = tabs_q[rnd_kategorija];
