@@ -37,3 +37,4 @@ Video	</br>
 	- Klikom miša na Ponovno igraj, s istim imenom kao i prije se ponovno prijavljujemo za igru. Opet na serveru trebamo pritisnuti gumb Pokreni da igru započnemo.</br>
 	
 Ovdje u repozitoriju nema audio i video pitanja zbog (C) (link uskoro)
+Na drugom branchu se nalazi Kviz za Otvorene dane Matematičkog odsjeka.
