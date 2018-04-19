@@ -4,23 +4,25 @@
   1 - bonus
   2 - pitanja
   3 - slike
-  4 - video
+  4 - video -->> izbaceno
 */
 
+int BROJKATEGORIJA = 4;
+
 class pitanja{
-  Table[] tabs_q = new Table[5];
-  IntList[] postavljena_pitanja = new IntList[5];
+  Table[] tabs_q = new Table[BROJKATEGORIJA];
+  IntList[] postavljena_pitanja = new IntList[BROJKATEGORIJA];
   
   pitanja(){
-    String[] folder = new String[5];
+    String[] folder = new String[BROJKATEGORIJA];
 
     folder[0] = "audio/";
     folder[1] = "bonus/";
     folder[2] = "pitanja/";
     folder[3] = "slike/";
-    folder[4] = "video/";
+    // folder[4] = "video/";
 
-    for (int i = 0; i < 5; ++i) {
+    for (int i = 0; i < BROJKATEGORIJA; ++i) {
       tabs_q[i] = new Table();
       tabs_q[i] = loadTable(dataPath(folder[i] + "pitanja.tsv"), "tsv");
       postavljena_pitanja[i] = new IntList();
@@ -34,7 +36,7 @@ class pitanja{
     if(postavljena_pitanja[kategorija].size() == tabs_q[kategorija].getRowCount() ){
        int rnd_kategorija;
        do{
-         rnd_kategorija = (int) random(0, 5);
+         rnd_kategorija = (int) random(0, BROJKATEGORIJA);
        }
        while(rnd_kategorija == kategorija);
        

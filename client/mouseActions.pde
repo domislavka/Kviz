@@ -33,11 +33,13 @@ void mouseOver(){
           (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
             buttonReplay(colors[3]);
       }
-      
-      else if((mouseX >= 7*width/10 && mouseX <= 7*width/10 + width/5) &&
-          (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
-            buttonClose(colors[3]);
+      break;
+    case 7:
+      if((mouseX >= 7*width/10 && mouseX <= 7*width/10 + width/5) &&
+        (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
+          buttonGoBack(colors[3]);
       }
+      break;
   }
   
 }
@@ -59,11 +61,12 @@ void mousePressed(){
 
   else if((mouseX >= 2*width/5 && mouseX <= 2*width/5 + width/5) &&
       (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){
-      //pritisnuli smo buttonStart
-      if(state == 0 && txtMyName.getText().length() > 0 && txtServerAddress.getText().length() > 0){
+      //pritisnuli smo buttonStart                      // iskomentirano radi Otvorenih dana
+      if(state == 0 && txtMyName.getText().length() > 0 /*&& txtServerAddress.getText().length() > 0*/){
         myName = txtMyName.getText();
-        serverAddress = txtServerAddress.getText();
-        print("serverAddress: " + serverAddress + "\n");
+        // iskomentirano radi Otvorenih dana
+        // serverAddress = txtServerAddress.getText();
+        // print("serverAddress: " + serverAddress + "\n");
         spajanjeNaServer();
         //treba provjeriti da je unesena dobra ip adressa
         state = 1;
@@ -71,6 +74,7 @@ void mousePressed(){
       //pritisnuli smo buttonReplay, myName ostavljamo isto
       else if(state == 3){
         state = 1;
+        replayButton = true;
         resetPlayer(true);
       }
         
@@ -80,10 +84,11 @@ void mousePressed(){
   else if((mouseX >= 7*width/10 && mouseX <= 7*width/10 + width/5) &&
       (mouseY >= 7*height/10 && mouseY <= 7*height/10 + height/5) ){  
       //pritisnuli smo buttonClose u pocetnom zaslonu ili na kraju igre
-      if(state == 0 || state == 3)
-        exit();
+      if(state == 0){
+       state = 7;
+      }
       //pritisnuli smo buttonGoBack u highScoreu
-      else if(state == 2){
+      else if(state == 2 || state == 7){
         state = 0;
       }
   }

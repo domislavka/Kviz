@@ -13,4 +13,8 @@ void resetPlayer(boolean replay){
   videoplay = false;
   currCategory = -1;
   currNumber = -1;
+  
+  namesOfPlayersForHS = new StringList();
+  scoresOfPlayersForHS = new IntList();
+  prikaziSamoJednom = false;
 }

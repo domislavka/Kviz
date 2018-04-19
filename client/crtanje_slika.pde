@@ -1,4 +1,4 @@
-PImage img;
+PImage img, img_original;
 int posX,posY;
 int smjerX, smjerY;
 boolean slika_loadana=false;
@@ -21,7 +21,8 @@ void load_slike(int currNumber, int mode)
   image_name+=".jpg";
   
   img = loadImage(image_name);
-  
+  img_original = loadImage(image_name);
+
   switch(mode) {
   case 1:
     smjerX=1;
@@ -98,7 +99,7 @@ void slika_1(int currNumber)
   }
   imageMode(CENTER);
   img.updatePixels();
-  image(img,height/10 + width*0.3, height/10 + 17*height/60,height/2,height/2);
+  image(img, height/10 + width*0.3, height/10 + 17*height/60,height/2,height/2);
   if(posX>=img.width-10 || posX<=10)
     smjerX*=-1;
   if(posY>=img.height-10 || posY<=10)

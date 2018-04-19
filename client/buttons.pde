@@ -1,7 +1,7 @@
 color[] colors = {#DA70D6, #64EE64, #DC143C, #C0C0C0, #FFFF66};
 
 void buttonHighScore(color fillColor){
-  stroke(255);
+  stroke(fillColor);
   fill(fillColor);
   rect(width/10, 7*height/10, width/5, height/5, oblost);
   
@@ -13,7 +13,7 @@ void buttonHighScore(color fillColor){
 }
 
 void buttonStart(color fillColor){
-  stroke(255);
+  stroke(fillColor);
   fill(fillColor);
   rect(2*width/5, 7*height/10, width/5, height/5, oblost);
   
@@ -24,8 +24,9 @@ void buttonStart(color fillColor){
   text(startText, 0.5*width, 7*height/10 +  height/10);
 }
 
+
 void buttonClose(color fillColor){
-  stroke(255);
+  stroke(fillColor);
   fill(fillColor);
   rect(7*width/10, 7*height/10, width/5, height/5, oblost);
   
@@ -37,10 +38,10 @@ void buttonClose(color fillColor){
 }
 
 void buttonGoBack(color fillColor){
-  stroke(255);
+  stroke(fillColor);
   fill(fillColor);
 
-  if(state == 2)
+  if(state == 2 || state == 7)
     rect(7*width/10, 7*height/10, width/5, height/5, oblost);
   else if (state == 3)
     rect(width/10, 7*height/10, width/5, height/5, oblost);
@@ -49,7 +50,7 @@ void buttonGoBack(color fillColor){
   stroke(0);
   textAlign(CENTER, CENTER);
   textSize(30);
-  if(state == 2)
+  if(state == 2 || state == 7)
     text(goBackText, 4*width/5, 7*height/10 +  height/10);
   else if (state == 3)
     text(goBackText, width/5, 7*height/10 +  height/10);
@@ -57,7 +58,7 @@ void buttonGoBack(color fillColor){
 }
 
 void buttonReplay(color fillColor){
-  stroke(255);
+  stroke(fillColor);
   fill(fillColor);
   rect(2*width/5, 7*height/10, width/5, height/5, oblost);
   

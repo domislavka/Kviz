@@ -2,6 +2,8 @@ import controlP5.*;
 ControlP5 controlP5;
 ControlTimer stoperica;
 Textlabel t;
+color[] colorsTimer = {#FF0000,#FF3300,#ff6600,#ff9900,#FFCC00,#FFFF00,#ccff00,#99ff00,#66ff00,#33ff00};
+boolean dozvoljenoVrijeme = true;
 
 class timer{
     float razmak;
@@ -9,7 +11,6 @@ class timer{
     float timer_y;
     float timer_w;
     float timer_h;
-    color[] colors={#FF0000,#FF3300,#ff6600,#ff9900,#FFCC00,#FFFF00,#ccff00,#99ff00,#66ff00,#33ff00};
   
   timer(float visina, float sirina){
     razmak = visina / 60;
@@ -24,17 +25,30 @@ class timer{
     fill(255);
     stroke(255);
     //ne znam zasto podivlja za i = 100
-    if(stoperica.second() != 10) rect(timer_x, timer_y, timer_w, timer_h, 30);
+    if(stoperica.second() != vrijemeZaOdgovor) rect(timer_x, timer_y, timer_w, timer_h, 30);
     rectMode(RADIUS);
-    if(stoperica.second() < 10){
-      fill(colors[9 - stoperica.second()]);
-      stroke(colors[9 - stoperica.second()]);
+    if(stoperica.second() < vrijemeZaOdgovor){
+      fill(colorsTimer[(vrijemeZaOdgovor-1) - stoperica.second()]);
+      stroke(colorsTimer[(vrijemeZaOdgovor-1) - stoperica.second()]);
     }
-    rect(timer_x+timer_w/2,timer_y+timer_h/2,(10 - stoperica.second())*timer_w/20,timer_h/2,30);
+    rect(timer_x+timer_w/2,timer_y+timer_h/2,(vrijemeZaOdgovor - stoperica.second())*timer_w/20,timer_h/2,30);
     rectMode(CORNER);
     fill(0);
     textAlign(CENTER,CENTER);
     textSize(timer_h/2);
-    text(10 - stoperica.second(),timer_x+timer_w/2,timer_y+timer_h/2);
+      if(stoperica.second() < vrijemeZaOdgovor) {
+      text(vrijemeZaOdgovor - stoperica.second(),timer_x+timer_w/2,timer_y+timer_h/2);
+      dozvoljenoVrijeme = true;
+    }
+    else
+    {
+      fill(255);
+      rect(timer_x, timer_y, timer_w, timer_h, 30);
+      dozvoljenoVrijeme = false;
+      textSize(timer_h/4);
+      fill(0);
+      text("VRIJEME JE\n ISTEKLO",timer_x+timer_w/2,timer_y+timer_h/2);
+      crtajTocanOdgovor();
+    }
   }
 }
